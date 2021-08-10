@@ -1,13 +1,15 @@
 <template>
-  <div class="banner">
+  <div class="banner" v-if="chk==false">
     <a @click="sub_name='Kim'" :class="{salmon : sub_name == 'Kim'}">김영진</a>
     <a @click="sub_name='Babo'" :class="{salmon : sub_name == 'Babo'}">이현빈</a>
     <a @click="sub_name='Ilbe'" :class="{salmon : sub_name == 'Ilbe'}">이병진</a>
     <a @click="sub_name='Choi'" :class="{salmon : sub_name == 'Choi'}">최수완</a>
     <a @click="sub_name='Yoon'" :class="{salmon : sub_name == 'Yoon'}">윤상필</a>
   </div>
-  <button class="btn1"> ㅎㅇ</button>
-  <div>
+  
+  <button @click="chk = !chk" class="btn1"> 전환</button>
+  
+  <div v-if="chk == false">
     <br /> <br />
     <img src="./assets/Kim.png" v-if="sub_name == 'Kim' ">
     <img src="./assets/Babo.png" v-if="sub_name == 'Babo'">
@@ -15,7 +17,9 @@
     <img src="./assets/Choi.png" v-if="sub_name == 'Choi'">
     <img src="./assets/Yoon.png" v-if="sub_name == 'Yoon'">
   </div>
-
+  <div class ="banner2" v-if="chk == true">
+    <a v-bind:href="link">hello</a>
+  </div>
 </template>
 
 <script>
@@ -25,6 +29,7 @@ export default {
     return {
       chk : false,
       sub_name : "",
+      link : "https://fow.kr",
 
     }
     
@@ -48,7 +53,7 @@ div {
 }
 
 .banner {
-  padding: 15px;
+  padding: 12px;
   border-radius: 10px;
   background:yellowgreen;
   
@@ -61,8 +66,21 @@ div {
   padding: 10px;
 }
 
+.banner2 {
+  padding: 12px;
+  background: violet;
+  border-radius: 10px;
+}
+
+.banner2 a {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+}
 .salmon {
   color: lightcoral !important;
+  text-shadow: 1px 1px 1px lightgrey;
 }
 
 .banner a:hover {
@@ -75,9 +93,10 @@ div {
   border-radius: 20px;
   padding : 3px;
   float: right;
-  position: relative;
+  position: fixed;
   right: 12px;
-  bottom: 40px;
+  /* bottom: 40px; */
+  top: 14px;
   box-shadow: 1px 1px 1px lightslategray;
   transition-duration: 0.3s;
 }
